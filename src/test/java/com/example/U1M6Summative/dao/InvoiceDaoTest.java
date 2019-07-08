@@ -30,29 +30,29 @@ public class InvoiceDaoTest {
     @Autowired
     protected ItemDao itemDao;
 
-//    @Before
-//    public void setUp() throws Exception {
-//        // Clean up the test db
-//        List<Customer> customerList = customerDao.getAllCustomers();
-//        for (Customer customer : customerList) {
-//            customerDao.deleteCustomer(customer.getId());
-//        }
-//
-//        List<Invoice> invoiceList = invoiceDao.getAllInvoices();
-//        for (Invoice invoice : invoiceList) {
-//            invoiceDao.deleteInvoice(invoice.getId());
-//        }
-//
-//        List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItems();
-//        for (InvoiceItem invoiceItem : invoiceItemList) {
-//            invoiceItemDao.deleteInvoiceItem(invoiceItem.getId());
-//        }
-//
-//        List<Item> itemList = itemDao.getAllItems();
-//        for (Item item: itemList) {
-//            itemDao.deleteItem(item.getId());
-//        }
-//    }
+    @Before
+    public void setUp() throws Exception {
+        // Clean up the test db
+        List<Customer> customerList = customerDao.getAllCustomers();
+        for (Customer customer : customerList) {
+            customerDao.deleteCustomer(customer.getId());
+        }
+
+        List<Invoice> invoiceList = invoiceDao.getAllInvoices();
+        for (Invoice invoice : invoiceList) {
+            invoiceDao.deleteInvoice(invoice.getId());
+        }
+
+        List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItems();
+        for (InvoiceItem invoiceItem : invoiceItemList) {
+            invoiceItemDao.deleteInvoiceItem(invoiceItem.getId());
+        }
+
+        List<Item> itemList = itemDao.getAllItems();
+        for (Item item: itemList) {
+            itemDao.deleteItem(item.getId());
+        }
+    }
 
     @Test
     public void addGetDeleteInvoice() {
