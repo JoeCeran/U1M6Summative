@@ -73,7 +73,7 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
     @Override
     public List<Invoice> getAllInvoices() {
 
-        return jdbcTemplate.query(SELECT_ALL_INVOICES_SQL, this::mapRowToInvoice)
+        return jdbcTemplate.query(SELECT_ALL_INVOICES_SQL, this::mapRowToInvoice);
     }
 
     @Override
