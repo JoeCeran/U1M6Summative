@@ -7,6 +7,7 @@ public class InvoiceItem {
 
     private Integer id;
     private Integer invoiceId;
+    private Integer itemId;
     private Integer quantity;
     private BigDecimal unityRate;
     private BigDecimal discount;
@@ -27,11 +28,15 @@ public class InvoiceItem {
         this.invoiceId = invoiceId;
     }
 
+    public Integer getItemId() { return itemId; }
+
+    public void setItemId(Integer itemId) { this.itemId = itemId; }
+
     public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQantity(Integer quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -50,6 +55,7 @@ public class InvoiceItem {
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
     }
+
 
     @Override
     public boolean equals(Object o) {
