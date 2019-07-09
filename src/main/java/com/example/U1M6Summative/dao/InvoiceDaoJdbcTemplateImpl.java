@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
 @Repository
 public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
     // Prepared statement strings
@@ -30,6 +31,7 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
     public InvoiceDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
     @Override
     @Transactional
     public Invoice addInvoice(Invoice invoice) {
@@ -44,8 +46,10 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
         invoice.setId(id);
         return invoice;
     }
+
     @Override
     public Invoice getInvoice(int id) {
+
         try {
             return jdbcTemplate.queryForObject(SELECT_INVOICE_SQL, this::mapRowToInvoice, id);
         } catch (EmptyResultDataAccessException e) {
@@ -53,16 +57,20 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
             return null;
         }
     }
+
     @Override
     public List<Invoice> getAllInvoices() {
+
         return jdbcTemplate.query(SELECT_ALL_INVOICES_SQL, this::mapRowToInvoice);
     }
     @Override
     public List<Invoice> getInvoicesByCustomer(int customerId) {
+
         return jdbcTemplate.query(SELECT_INVOICES_BY_CUSTOMER_SQL, this::mapRowToInvoice, customerId);
     }
     @Override
     public void updateInvoice(Invoice invoice) {
+
         jdbcTemplate.update(
                 UPDATE_INVOICE_SQL,
                 invoice.getCustomerId(),
@@ -72,8 +80,10 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
                 invoice.getLateFee(),
                 invoice.getId());
     }
+
     @Override
     public void deleteInvoice(int id) {
+
         jdbcTemplate.update(DELETE_INVOICE_SQL, id);
     }
     private Invoice mapRowToInvoice(ResultSet rs, int rowNum) throws SQLException {

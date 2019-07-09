@@ -59,10 +59,5 @@ public class Item {
         return Objects.hash(getId(), getName(), getDescription(), getDailyRate());
     }
 
-
-
-
 }
-
-
 

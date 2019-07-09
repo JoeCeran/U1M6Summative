@@ -42,7 +42,7 @@ public class InvoiceItemDaoJdbcTemplateImpl implements InvoiceItemDao{
         @Override
         public InvoiceItem getInvoiceItem(int id) {
             try {
-                return jdbcTemplate.queryForObject(SELECT_INVOICE_ITEM_SQL, this::mapRowToAuthor, id);
+                return jdbcTemplate.queryForObject(SELECT_INVOICE_ITEM_SQL, this::mapRowToInvoiceItem, id);
             } catch (EmptyResultDataAccessException e) {
                 // if nothing is returned just catch the exception and return null
                 return null;
@@ -51,7 +51,7 @@ public class InvoiceItemDaoJdbcTemplateImpl implements InvoiceItemDao{
 
         @Override
         public List<InvoiceItem> getAllInvoiceItem() {
-            return jdbcTemplate.query(SELECT_ALL_INVOICE_ITEM_SQL, this::mapRowToAuthor);
+            return jdbcTemplate.query(SELECT_ALL_INVOICE_ITEM_SQL, this::mapRowToInvoiceItem);
         }
 
         @Override
@@ -89,7 +89,7 @@ public class InvoiceItemDaoJdbcTemplateImpl implements InvoiceItemDao{
         }
 
         // Helper methods
-        private InvoiceItem mapRowToAuthor(ResultSet rs, int rowNum) throws SQLException {
+        private InvoiceItem mapRowToInvoiceItem(ResultSet rs, int rowNum) throws SQLException {
             InvoiceItem invoiceItem = new InvoiceItem();
             invoiceItem.setInvoiceId(rs.getInt("invoice_id"));
             invoiceItem.setItemId(rs.getInt("item_id"));

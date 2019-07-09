@@ -1,19 +1,14 @@
 package com.example.U1M6Summative.service;
-
 import com.example.U1M6Summative.dao.CustomerDao;
 import com.example.U1M6Summative.dao.InvoiceDao;
 import com.example.U1M6Summative.dao.InvoiceItemDao;
 import com.example.U1M6Summative.dao.ItemDao;
-
 import com.example.U1M6Summative.model.Customer;
 import com.example.U1M6Summative.model.Item;
-
 import com.example.U1M6Summative.model.Invoice;
 import com.example.U1M6Summative.model.InvoiceItem;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -33,6 +28,7 @@ public class ServiceLayer {
         this.invoiceItemDao = invoiceItemDao;
         this.itemDao = itemDao;
     }
+
 
     //customer api
 
@@ -79,10 +75,8 @@ public class ServiceLayer {
         itemDao.deleteItem(id);
     }
 
-
-//
 // Invoice API
-//
+
     public Invoice saveInvoice(Invoice invoice) {
 
         return invoiceDao.addInvoice(invoice);
