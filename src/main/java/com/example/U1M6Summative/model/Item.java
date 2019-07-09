@@ -3,6 +3,7 @@ package com.example.U1M6Summative.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+
 public class Item {
 
     private int id;
@@ -46,10 +47,10 @@ public class Item {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item ) o;
+        com.example.U1M6Summative.model.Item item = (com.example.U1M6Summative.model.Item) o;
         return getId() == item.getId() &&
                 Objects.equals(getName(), item.getName()) &&
-                Objects.equals(getDescription(), item.getDescription())  &&
+                Objects.equals(getDescription(), item.getDescription()) &&
                 Objects.equals(getDailyRate(), item.getDailyRate());
     }
 
@@ -59,4 +60,11 @@ public class Item {
     }
 
 
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
