@@ -3,6 +3,7 @@ package com.example.U1M6Summative.dao;
 import com.example.U1M6Summative.model.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,6 +23,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+=======
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
 @Repository
 public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
 
@@ -69,14 +80,20 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
         invoice.setId(id);
 
         return invoice;
+<<<<<<< HEAD
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
+=======
 >>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
     }
 
     @Override
     public Invoice getInvoice(int id) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         return null;
 =======
+=======
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
 
         try {
             return jdbcTemplate.queryForObject(SELECT_INVOICE_SQL, this::mapRowToInvoice, id);
@@ -84,13 +101,21 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
             // if there is no entry with the given id, just return null
             return null;
         }
+<<<<<<< HEAD
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
+=======
 >>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
     }
 
     @Override
     public List<Invoice> getAllInvoices() {
 <<<<<<< HEAD
+<<<<<<< HEAD
         return null;
+=======
+
+        return jdbcTemplate.query(SELECT_ALL_INVOICES_SQL, this::mapRowToInvoice);
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
 =======
 
         return jdbcTemplate.query(SELECT_ALL_INVOICES_SQL, this::mapRowToInvoice);
@@ -100,7 +125,12 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
     @Override
     public List<Invoice> getInvoicesByCustomer(int customerId) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         return null;
+=======
+
+        return jdbcTemplate.query(SELECT_INVOICES_BY_CUSTOMER_SQL, this::mapRowToInvoice, customerId);
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
 =======
 
         return jdbcTemplate.query(SELECT_INVOICES_BY_CUSTOMER_SQL, this::mapRowToInvoice, customerId);
@@ -111,7 +141,10 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
     public void updateInvoice(Invoice invoice) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
         jdbcTemplate.update(
                 UPDATE_INVOICE_SQL,
                 invoice.getCustomerId(),
@@ -120,6 +153,9 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
                 invoice.getReturnDate(),
                 invoice.getLateFee(),
                 invoice.getId());
+<<<<<<< HEAD
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
+=======
 >>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
     }
 
@@ -127,9 +163,12 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
     public void deleteInvoice(int id) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
 }
 =======
+=======
+>>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
         jdbcTemplate.update(DELETE_INVOICE_SQL, id);
     }
 
