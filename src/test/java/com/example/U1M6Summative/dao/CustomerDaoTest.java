@@ -102,7 +102,7 @@ public class CustomerDaoTest {
         customer2 = customerDao.addCustomer(customer2);
 
 
-        List<Customer> customerList = CustomerDao.getAllCustomers();
+        List<Customer> customerList = customerDao.getAllCustomers();
 
         assertEquals(customerList.size(), 2);
     }
@@ -127,10 +127,10 @@ public class CustomerDaoTest {
         customer.setPhone("973-555-5678");
 
 
-        CustomerDao.updateCustomer(customer);
+        customerDao.updateCustomer(customer);
 
-        Customer customer =  CustomerDao.getCustomer(customer.getId());
+        Customer customer1 =  customerDao.getCustomer(customer.getId());
 
-        assertEquals(customer2, customer);
+        assertEquals(customer1, customer);
     }
 }
