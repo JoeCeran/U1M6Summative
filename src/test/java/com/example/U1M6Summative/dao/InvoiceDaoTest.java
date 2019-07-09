@@ -30,6 +30,7 @@ public class InvoiceDaoTest {
     @Autowired
     protected ItemDao itemDao;
 
+
     @Before
     public void setUp() throws Exception {
         // Clean up the test db
