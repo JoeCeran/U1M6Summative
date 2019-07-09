@@ -32,26 +32,25 @@ public class InvoiceItemDaoJdbcTemplateImplTest {
 
     @Before
     public void setUp() throws Exception {
-        // Clean up the test db
-//        List<Customer> customerList = customerDao.getAllCustomers();
-//        for (Customer customer : customerList) {
-//            customerDao.deleteCustomer(customer.getId());
-//        }
+        List<Customer> customerList = customerDao.getAllCustomers();
+        for (Customer customer : customerList) {
+            customerDao.deleteCustomer(customer.getId());
+        }
 
-//        List<Invoice> invoiceList = invoiceDao.getAllInvoices();
-//        for (Invoice invoice : invoiceList) {
-//            invoiceDao.deleteInvoice(invoice.getId());
-//        }
+        List<Invoice> invoiceList = invoiceDao.getAllInvoices();
+        for (Invoice invoice : invoiceList) {
+            invoiceDao.deleteInvoice(invoice.getId());
+        }
 
         List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItem();
         for (InvoiceItem invoiceItem : invoiceItemList) {
             invoiceItemDao.deleteInvoiceItem(invoiceItem.getId());
         }
 
-//        List<Item> itemList = itemDao.getAllItems();
-//        for (Item item: itemList) {
-//            itemDao.deleteItem(item.getId());
-//        }
+        List<Item> itemList = itemDao.getAllItems();
+        for (Item item: itemList) {
+            itemDao.deleteItem(item.getId());
+        }
     }
 
     @Test
@@ -59,8 +58,8 @@ public class InvoiceItemDaoJdbcTemplateImplTest {
         Item item = new Item();
         item.setName("Bucket");
         item.setDescription("Big Can thing");
-        item.dailyRate("1.25");
-        itemDao.createItem(item);
+        item.setDailyRate(new BigDecimal("1.25"));
+        itemDao.addItem(item);
 
         // Create an invoice first
         InvoiceItem invoiceItem = new InvoiceItem();
@@ -88,8 +87,8 @@ public class InvoiceItemDaoJdbcTemplateImplTest {
         Item item = new Item();
         item.setName("Bucket");
         item.setDescription("Big Can thing");
-        item.dailyRate("1.25");
-        itemDao.createItem(item);
+        item.setDailyRate(new BigDecimal("1.25"));
+        itemDao.addItem(item);
 
         // Create an invoice first
         InvoiceItem invoiceItem = new InvoiceItem();
@@ -100,11 +99,11 @@ public class InvoiceItemDaoJdbcTemplateImplTest {
         invoiceItem.setDiscount(new BigDecimal(10.00));
         invoiceItemDao.addInvoiceItem(invoiceItem);
 
-        Item item = new Item();
+        item = new Item();
         item.setName("Bucket");
         item.setDescription("Big Can thing");
-        item.dailyRate("1.25");
-        itemDao.createItem(item);
+        item.setDailyRate(new BigDecimal("1.25"));
+        itemDao.addItem(item);
 
         // Create a second invoice
         InvoiceItem invoiceItem2 = new InvoiceItem();
@@ -126,8 +125,8 @@ public class InvoiceItemDaoJdbcTemplateImplTest {
         Item item = new Item();
         item.setName("Bucket");
         item.setDescription("Big Can thing");
-        item.dailyRate("1.25");
-        itemDao.createItem(item);
+        item.setDailyRate(new BigDecimal("1.25"));
+        itemDao.addItem(item);
 
         InvoiceItem invoiceItem = new InvoiceItem();
         invoiceItem.setInvoiceId(0);
