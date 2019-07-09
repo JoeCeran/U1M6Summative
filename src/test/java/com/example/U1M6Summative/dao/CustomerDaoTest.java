@@ -44,7 +44,7 @@ public class CustomerDaoTest {
             invoiceDao.deleteInvoice(invoice.getId());
         }
 
-        List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItems();
+        List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItem();
         for (InvoiceItem invoiceItem : invoiceItemList) {
             invoiceItemDao.deleteInvoiceItem(invoiceItem.getId());
         }
@@ -129,8 +129,11 @@ public class CustomerDaoTest {
 
         CustomerDao.updateCustomer(customer);
 
-        Customer customer =  CustomerDao.getCustomer(customer.getId());
+        customer = CustomerDao.getCustomer(customer.getId());
 
-        assertEquals(customer2, customer);
+        Customer customer1 = CustomerDao.getCustomer(customer.getId());
+        assertEquals(customer1, customer);
+
+
     }
 }
