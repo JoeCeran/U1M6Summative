@@ -60,7 +60,7 @@ public class ServiceLayer {
         invoiceItemList.stream()
                 .forEach(invoiceItem -> invoiceItemDao.deleteInvoiceItem(invoiceItem.getId()));
 
-        // Remove album
+        // Remove invoice
         invoiceDao.deleteInvoice(id);
     }
 
