@@ -4,12 +4,9 @@ import com.example.U1M6Summative.dao.CustomerDao;
 import com.example.U1M6Summative.dao.InvoiceDao;
 import com.example.U1M6Summative.dao.InvoiceItemDao;
 import com.example.U1M6Summative.dao.ItemDao;
-<<<<<<< HEAD
 import com.example.U1M6Summative.model.Item;
-=======
 import com.example.U1M6Summative.model.Invoice;
 import com.example.U1M6Summative.model.InvoiceItem;
->>>>>>> 95659d74c40e0720eddaf5470a70a2882972f2a0
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,43 +29,10 @@ public class ServiceLayer {
         this.invoiceItemDao = invoiceItemDao;
         this.itemDao = itemDao;
     }
-<<<<<<< HEAD
+
     //Customer API
 
     //Invoice API
-
-    //Item API
-    public Item saveItem(Item item) {
-
-        return itemDao.addItem(item);
-    }
-
-    public Item findItem(int id) {
-
-        return itemDao.getItem(id);
-    }
-
-    public List<Item> findAllItems() {
-
-        return itemDao.getAllItems();
-    }
-
-    public void updateItem(Item item) {
-
-        itemDao.updateItem(item);
-    }
-
-    public void removeItem(int id) {
-
-        itemDao.deleteItem(id);
-    }
-}
-=======
->>>>>>> 95659d74c40e0720eddaf5470a70a2882972f2a0
-
-    //
-    // Invoice API
-    //
     public Invoice saveInvoice(Invoice invoice) {
 
         return invoiceDao.addInvoice(invoice);
@@ -100,6 +64,34 @@ public class ServiceLayer {
         // Remove invoice
         invoiceDao.deleteInvoice(id);
     }
+
+    //Item API
+    public Item saveItem(Item item) {
+
+        return itemDao.addItem(item);
+    }
+
+    public Item findItem(int id) {
+
+        return itemDao.getItem(id);
+    }
+
+    public List<Item> findAllItems() {
+
+        return itemDao.getAllItems();
+    }
+
+    public void updateItem(Item item) {
+
+        itemDao.updateItem(item);
+    }
+
+    public void removeItem(int id) {
+
+        itemDao.deleteItem(id);
+    }
+
+
 
 }
 

@@ -36,4 +36,25 @@ public class ServiceLayerTest {
         service = new ServiceLayer(customerDao, invoiceDao, invoiceItemDao, itemDao);
 
     }
+
+
+    @Test
+    public void saveInvoice() {
+    }
+
+    @Test
+    public void findInvoice() {
+    }
+
+    @Test
+    public void findAllInvoices() {
+    }
+
+    @Test
+    public void updateInvoice() {
+    }
+
+    @Test
+    public void removeInvoice() {
+    }
 }
