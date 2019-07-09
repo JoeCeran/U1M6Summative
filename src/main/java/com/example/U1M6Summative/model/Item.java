@@ -58,16 +58,6 @@ public class Item {
     public int hashCode() {
         return Objects.hash(getId(), getName(), getDescription(), getDailyRate());
     }
-
-
-<<<<<<< HEAD
-}
-=======
 }
 
 
-
-<<<<<<< HEAD
->>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
-=======
->>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06

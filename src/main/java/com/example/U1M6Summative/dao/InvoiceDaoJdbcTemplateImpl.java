@@ -2,37 +2,15 @@ package com.example.U1M6Summative.dao;
 
 import com.example.U1M6Summative.model.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
-@Repository
-public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
-
-    @Override
-    public Invoice addInvoice(Invoice invoice) {
-        return null;
-=======
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-=======
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 
->>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
 @Repository
 public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
 
@@ -80,11 +58,7 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
         invoice.setId(id);
 
         return invoice;
-<<<<<<< HEAD
->>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
-=======
->>>>>>> 8e6180965661dd0c208e674cfb582ea11f90dc06
-    }
+
 
     @Override
     public Invoice getInvoice(int id) {
