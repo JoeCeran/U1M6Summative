@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Invoice {
+
     // Properties
     private Integer id;
     private Integer customerId;
@@ -12,6 +13,7 @@ public class Invoice {
     private LocalDate pickupDate;
     private LocalDate returnDate;
     private BigDecimal lateFee;
+
     // Getters and Setters
     public Integer getId() {
         return id;
