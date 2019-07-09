@@ -1,10 +1,10 @@
-package com.example.U1M6Summative.model;
+package com.example.U1M6Summative.viewmodel;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
 
-public class Item {
+public class ItemViewModel {
 
     private int id;
     private String name;

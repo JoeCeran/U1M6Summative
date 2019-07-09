@@ -56,11 +56,16 @@ public class InvoiceItemDaoJdbcTemplateImplTest {
 
     @Test
     public void addGetDeleteInvoiceItem() {
+        Item item = new Item();
+        item.setName("Bucket");
+        item.setDescription("Big Can thing");
+        item.dailyRate("1.25");
+        itemDao.createItem(item);
 
         // Create an invoice first
         InvoiceItem invoiceItem = new InvoiceItem();
         invoiceItem.setInvoiceId(0);
-        invoiceItem.setItemId(0);
+        invoiceItem.setItemId(item.getId());
         invoiceItem.setQuantity(1000);
         invoiceItem.setUnityRate(new BigDecimal(10.00));
         invoiceItem.setDiscount(new BigDecimal(10.00));
@@ -79,19 +84,32 @@ public class InvoiceItemDaoJdbcTemplateImplTest {
 
     @Test
     public void getAllInvoices() {
+
+        Item item = new Item();
+        item.setName("Bucket");
+        item.setDescription("Big Can thing");
+        item.dailyRate("1.25");
+        itemDao.createItem(item);
+
         // Create an invoice first
         InvoiceItem invoiceItem = new InvoiceItem();
         invoiceItem.setInvoiceId(0);
-        invoiceItem.setItemId(0);
+        invoiceItem.setItemId(item.getId());
         invoiceItem.setQuantity(1000);
         invoiceItem.setUnityRate(new BigDecimal(10.00));
         invoiceItem.setDiscount(new BigDecimal(10.00));
         invoiceItemDao.addInvoiceItem(invoiceItem);
 
+        Item item = new Item();
+        item.setName("Bucket");
+        item.setDescription("Big Can thing");
+        item.dailyRate("1.25");
+        itemDao.createItem(item);
+
         // Create a second invoice
         InvoiceItem invoiceItem2 = new InvoiceItem();
         invoiceItem2.setInvoiceId(0);
-        invoiceItem2.setItemId(0);
+        invoiceItem2.setItemId(item.getId());
         invoiceItem2.setQuantity(1000);
         invoiceItem2.setUnityRate(new BigDecimal(10.00));
         invoiceItem2.setDiscount(new BigDecimal(10.00));
@@ -104,5 +122,29 @@ public class InvoiceItemDaoJdbcTemplateImplTest {
 
     @Test
     public void updateInvoice() {
+
+        Item item = new Item();
+        item.setName("Bucket");
+        item.setDescription("Big Can thing");
+        item.dailyRate("1.25");
+        itemDao.createItem(item);
+
+        InvoiceItem invoiceItem = new InvoiceItem();
+        invoiceItem.setInvoiceId(0);
+        invoiceItem.setItemId(item.getId());
+        invoiceItem.setQuantity(1000);
+        invoiceItem.setUnityRate(new BigDecimal(10.00));
+        invoiceItem.setDiscount(new BigDecimal(10.00));
+        invoiceItemDao.addInvoiceItem(invoiceItem);
+
+        invoiceItem.setQuantity(2000);
+        invoiceItem.setUnityRate(new BigDecimal(12.00));
+        invoiceItem.setDiscount(new BigDecimal(11.00));
+
+        invoiceItemDao.updateInvoiceItem(invoiceItem);
+
+        InvoiceItem invoiceItem2 = invoiceItemDao.getInvoiceItem(invoiceItem.getId());
+
+        assertEquals(invoiceItem2, invoiceItem);
     }
 }
