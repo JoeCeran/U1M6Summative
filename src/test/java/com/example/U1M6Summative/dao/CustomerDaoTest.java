@@ -34,9 +34,9 @@ public class CustomerDaoTest {
     public void setUp() throws Exception {
         // Clean up the test db
         // Clean up the test db
-        List<Customer> customerList = CustomerDao.getAllCustomers();
+        List<Customer> customerList = customerDao.getAllCustomers();
         for (Customer customer : customerList) {
-            CustomerDao.deleteCustomer(customer.getId());
+            customerDao.deleteCustomer(customer.getId());
         }
 
         List<Invoice> invoiceList = invoiceDao.getAllInvoices();
@@ -44,7 +44,7 @@ public class CustomerDaoTest {
             invoiceDao.deleteInvoice(invoice.getId());
         }
 
-        List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItems();
+        List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItem();
         for (InvoiceItem invoiceItem : invoiceItemList) {
             invoiceItemDao.deleteInvoiceItem(invoiceItem.getId());
         }
@@ -70,13 +70,13 @@ public class CustomerDaoTest {
         customer = customerDao.addCustomer(customer);
 
 
-        Customer customer2 = CustomerDao.getCustomer(customer.getId());
+        Customer customer2 = customerDao.getCustomer(customer.getId());
 
         assertEquals(customer2, customer);
 
-        CustomerDao.deleteCustomer(customer.getId());
+        customerDao.deleteCustomer(customer.getId());
 
-        customer2 = CustomerDao.getCustomer(customer.getId());
+        customer2 = customerDao.getCustomer(customer.getId());
 
         assertNull(customer2);
     }
@@ -129,8 +129,11 @@ public class CustomerDaoTest {
 
         customerDao.updateCustomer(customer);
 
-        Customer customer1 =  customerDao.getCustomer(customer.getId());
+        customer = customerDao.getCustomer(customer.getId());
 
+        Customer customer1 = customerDao.getCustomer(customer.getId());
         assertEquals(customer1, customer);
+
+
     }
 }
