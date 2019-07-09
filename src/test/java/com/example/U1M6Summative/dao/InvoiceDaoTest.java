@@ -30,6 +30,7 @@ public class InvoiceDaoTest {
     @Autowired
     protected ItemDao itemDao;
 
+
     @Before
     public void setUp() throws Exception {
         // Clean up the test db
@@ -43,7 +44,7 @@ public class InvoiceDaoTest {
             invoiceDao.deleteInvoice(invoice.getId());
         }
 
-        List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItems();
+        List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItem();
         for (InvoiceItem invoiceItem : invoiceItemList) {
             invoiceItemDao.deleteInvoiceItem(invoiceItem.getId());
         }
@@ -116,7 +117,7 @@ public class InvoiceDaoTest {
         invoice2.setCustomerId(customer2.getId());
         invoice2.setOrderDate(LocalDate.of(2019, 07, 03));
         invoice2.setPickupDate(LocalDate.of(2019, 07, 05));
-        invoice2.setReturnDate(LocalDate.of(2019, 07, 09));
+        invoice2.setReturnDate(LocalDate.of(2019, 07, 9));
         invoice2.setLateFee(new BigDecimal("5.25"));
         invoice2 = invoiceDao.addInvoice(invoice2);
 

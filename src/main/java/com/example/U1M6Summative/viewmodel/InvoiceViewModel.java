@@ -103,4 +103,6 @@ public class InvoiceViewModel {
         return Objects.hash(getId(), getCustomerId(), getOrderDate(), getPickupDate(), getReturnDate(), getLateFee(), getInvoiceItems());
     }
 
+
 }
+
