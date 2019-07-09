@@ -133,7 +133,5 @@ public class CustomerDaoTest {
 
         Customer customer1 = customerDao.getCustomer(customer.getId());
         assertEquals(customer1, customer);
-
-
     }
 }
