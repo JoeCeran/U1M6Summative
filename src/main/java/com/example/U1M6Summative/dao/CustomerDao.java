@@ -11,13 +11,13 @@ public interface CustomerDao {
 
     Customer addCustomer (Customer customer);
 
-    static Customer getCustomer(int id);
+    Customer getCustomer(int id);
 
-    static List<Customer> getAllCustomers();
+    List<Customer> getAllCustomers();
 
     void updateCustomer(Customer customer);
 
-    static void deleteCustomer(int id);
+    void deleteCustomer(int id);
 
 
 }

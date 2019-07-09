@@ -33,10 +33,26 @@ public class CustomerDaoTest {
     @Before
     public void setUp() throws Exception {
         // Clean up the test db
-        List<Customer> customerList = customerDao.getAllCustomers();
+        // Clean up the test db
+        List<Customer> customerList = CustomerDao.getAllCustomers();
         for (Customer customer : customerList) {
             CustomerDao.deleteCustomer(customer.getId());
+        }
 
+        List<Invoice> invoiceList = invoiceDao.getAllInvoices();
+        for (Invoice invoice : invoiceList) {
+            invoiceDao.deleteInvoice(invoice.getId());
+        }
+
+        List<InvoiceItem> invoiceItemList = invoiceItemDao.getAllInvoiceItems();
+        for (InvoiceItem invoiceItem : invoiceItemList) {
+            invoiceItemDao.deleteInvoiceItem(invoiceItem.getId());
+        }
+
+        List<Item> itemList = itemDao.getAllItems();
+        for (Item item: itemList) {
+            itemDao.deleteItem(item.getId());
+        }
     }
 
     @Test
@@ -86,9 +102,9 @@ public class CustomerDaoTest {
         customer2 = customerDao.addCustomer(customer2);
 
 
-        List<Customer> customerList1 = CustomerDao.getAllCustomers();
+        List<Customer> customerList = CustomerDao.getAllCustomers();
 
-        assertEquals(customerList1.size(), 2);
+        assertEquals(customerList.size(), 2);
     }
 
 
