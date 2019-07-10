@@ -2,6 +2,7 @@
 package com.example.U1M6Summative.viewmodel;
 
 
+import com.example.U1M6Summative.model.Customer;
 import com.example.U1M6Summative.model.InvoiceItem;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public class InvoiceViewModel {
 
     // Properties
     private Integer id;
-    private Integer customerId;
+    private Customer customer;
     private LocalDate orderDate;
     private LocalDate pickupDate;
     private LocalDate returnDate;
@@ -29,12 +30,12 @@ public class InvoiceViewModel {
         this.id = id;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public LocalDate getOrderDate() {
@@ -91,7 +92,7 @@ public class InvoiceViewModel {
         if (o == null || getClass() != o.getClass()) return false;
         InvoiceViewModel that = (InvoiceViewModel) o;
         return getId() == that.getId() &&
-                getCustomerId() == that.getCustomerId() &&
+                Objects.equals(getCustomer(), that.getCustomer()) &&
                 Objects.equals(getOrderDate(), that.getOrderDate())  &&
                 Objects.equals(getPickupDate(), that.getPickupDate()) &&
                 Objects.equals(getReturnDate(), that.getReturnDate()) &&
@@ -100,7 +101,7 @@ public class InvoiceViewModel {
     }
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCustomerId(), getOrderDate(), getPickupDate(), getReturnDate(), getLateFee(), getInvoiceItems());
+        return Objects.hash(getId(), getCustomer(), getOrderDate(), getPickupDate(), getReturnDate(), getLateFee(), getInvoiceItems());
     }
 
 

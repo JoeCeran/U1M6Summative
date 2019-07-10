@@ -59,7 +59,7 @@ import static org.junit.Assert.*;
 
             Item item1 = itemDao.getItem(item.getId());
 
-            assertEquals(item, item1);
+            assertEquals(item.toString(), item1.toString());
 
             itemDao.deleteItem(item.getId());
 

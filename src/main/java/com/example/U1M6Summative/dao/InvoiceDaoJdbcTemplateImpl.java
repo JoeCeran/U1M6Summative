@@ -68,6 +68,8 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
 
         return jdbcTemplate.query(SELECT_INVOICES_BY_CUSTOMER_SQL, this::mapRowToInvoice, customerId);
     }
+
+
     @Override
     public void updateInvoice(Invoice invoice) {
 
