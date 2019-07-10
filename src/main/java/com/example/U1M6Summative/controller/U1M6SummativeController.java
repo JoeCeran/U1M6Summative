@@ -5,6 +5,7 @@ import com.example.U1M6Summative.dao.InvoiceDao;
 import com.example.U1M6Summative.dao.InvoiceItemDao;
 import com.example.U1M6Summative.dao.ItemDao;
 import com.example.U1M6Summative.model.Customer;
+import com.example.U1M6Summative.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class U1M6SummativeController {
     @Autowired
     private ItemDao itemDao;
 
+    //Customer
     @RequestMapping(value = "/customer", method = RequestMethod.POST)
     public Customer addCustomer(@RequestBody Customer customer) {
         customerDao.addCustomer(customer);
@@ -50,5 +52,33 @@ public class U1M6SummativeController {
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
     public List<Customer> getAllCustomers() {
         return customerDao.getAllCustomers();
+    }
+
+    //Items
+    @RequestMapping(value = "/items", method = RequestMethod.POST)
+    public Item addItem(@RequestBody Item item) {
+        itemDao.addItem(item);
+        return item;
+    }
+
+    @RequestMapping(value = "/item/{id}", method = RequestMethod.GET)
+    public Item getItemById(@PathVariable(name = "id") int id) {
+        return itemDao.getItem(id);
+    }
+
+    @RequestMapping(value = "/item/{id}", method = RequestMethod.PUT)
+    public void updateItem(@RequestBody Item item, @PathVariable(name = "id") int id) {
+
+        itemDao.updateItem(item);
+    }
+
+    @RequestMapping(value = "/item/{id}", method = RequestMethod.DELETE)
+    public void deleteItem(@PathVariable(name = "id") int id) {
+        itemDao.deleteItem(id);
+    }
+
+    @RequestMapping(value = "/items", method = RequestMethod.GET)
+    public List<Item> getAllItemss() {
+        return itemDao.getAllItems();
     }
 }

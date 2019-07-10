@@ -102,10 +102,10 @@ public class ServiceLayer {
     public void removeInvoice(int id) {
 
         // Remove all associated invoice items first
-        List<InvoiceItem> invoiceItemList = invoiceDao.getInvoiceItemByInvoice(id);
+        List<InvoiceItem> invoiceItemList = invoiceItemDao.getInvoiceItemsByInvoice(id);
 
         invoiceItemList.stream()
-        .forEach(invoiceItem -> invoiceItemDao.deleteInvoiceItemByInvoice(invoiceItem.getId()));
+        .forEach(invoiceItem -> invoiceItemDao.deleteInvoiceItem(invoiceItem.getId()));
 
         // Remove invoice
         invoiceDao.deleteInvoice(id);
