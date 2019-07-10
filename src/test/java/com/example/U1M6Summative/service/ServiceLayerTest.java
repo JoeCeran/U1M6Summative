@@ -114,6 +114,5 @@ public class ServiceLayerTest {
         doReturn(item).when(itemDao).addItem(item2);
         doReturn(item).when(itemDao).getItem(1);
         doReturn(iList).when(itemDao).getAllItems();
-        //doReturn(iList).when(itemDao).getItemsByCustomer(1);
     }
 }
