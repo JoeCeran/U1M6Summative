@@ -3,18 +3,12 @@ import com.example.U1M6Summative.dao.CustomerDao;
 import com.example.U1M6Summative.dao.InvoiceDao;
 import com.example.U1M6Summative.dao.InvoiceItemDao;
 import com.example.U1M6Summative.dao.ItemDao;
-<<<<<<< HEAD
 
-import com.example.U1M6Summative.model.Invoice;
-import com.example.U1M6Summative.model.InvoiceItem;
-
-import com.example.U1M6Summative.model.Item;
-=======
 import com.example.U1M6Summative.model.Customer;
 import com.example.U1M6Summative.model.Item;
 import com.example.U1M6Summative.model.Invoice;
 import com.example.U1M6Summative.model.InvoiceItem;
->>>>>>> 9de8ef3d8a003b162d3408c477eb3277874a0bb3
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
