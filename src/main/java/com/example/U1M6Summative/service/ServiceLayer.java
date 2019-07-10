@@ -12,7 +12,6 @@ import com.example.U1M6Summative.viewmodel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,6 +36,22 @@ public class ServiceLayer {
     }
 
     //Customer API
+
+    public Customer saveCustomer (Customer customer) {
+        return customerDao.addCustomer(customer);
+    }
+    public Customer findCustomer (int id) {
+        return customerDao.getCustomer(id);
+    }
+    public List<Customer> finaAlldCustomers() {
+        return customerDao.getAllCustomers();
+    }
+    public void updateCustomer (Customer customer) {
+        customerDao.updateCustomer(customer);
+    }
+    public void removeCustomer (int id) {
+        customerDao.deleteCustomer(id);
+    }
 
     //Invoice API
     @Transactional
@@ -136,6 +151,7 @@ public class ServiceLayer {
         return itemDao.addItem(item);
     }
 
+
     public Item findItem(int id) {
 
         return itemDao.getItem(id);
@@ -165,6 +181,10 @@ public class ServiceLayer {
         // Get the invoice items associated with the invoice
         List<InvoiceItem> invoiceItemList = invoiceItemDao.getInvoiceItemsByInvoice(invoice.getId());
 
+        // Remove all associated invoice items first
+        invoiceItemList.stream()
+        .forEach(invoiceItem -> invoiceItemDao.deleteInvoiceItem(invoiceItem.getId()));
+
         // Assemble the InvoiceViewModel
         InvoiceViewModel invoicevm = new InvoiceViewModel();
         invoicevm.setId(invoice.getId());
@@ -178,7 +198,7 @@ public class ServiceLayer {
         // Return the InvoiceViewModel
         return invoicevm;
     }
-
 }
+
 
 

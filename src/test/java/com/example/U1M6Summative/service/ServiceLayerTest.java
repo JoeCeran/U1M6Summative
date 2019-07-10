@@ -11,14 +11,11 @@ import com.example.U1M6Summative.viewmodel.ItemViewModel;
 import org.apache.tomcat.jni.Local;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.awt.dnd.InvalidDnDOperationException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -45,6 +42,7 @@ public class ServiceLayerTest {
 
     @Test
     public void saveInvoice() {
+
         InvoiceViewModel invoicevm = new InvoiceViewModel();
 
         invoicevm.setOrderDate(LocalDate.of(2019, 07, 10));
@@ -146,12 +144,34 @@ public class ServiceLayerTest {
     }
 
     //Set Ups
-
+    @Test
     private void setUpCustomerDaoMock() {
 
+        customerDao = mock(CustomerDaoJdbcTemplateImpl.class);
+        Customer customer = new Customer();
+        customer.setId(customer.getId());
+        customer.setFirstName("Robert");
+        customer.setLastName("Iger");
+        customer.setCompany("Disney");
+        customer.setPhone("2125551212");
+
+        Customer customer1 = new Customer();
+        customer.setId(customer.getId());
+        customer.setFirstName("Robert");
+        customer.setLastName("Iger");
+        customer.setCompany("Disney");
+        customer.setPhone("2125551212");
+
+        List<Customer> customerList = new ArrayList<>();
+        customerList.add(customer);
+
+        doReturn(customer).when(customerDao).addCustomer(customer);
+        doReturn(customer).when(customerDao).addCustomer(customer1);
+        doReturn(customerList).when(customerDao).getAllCustomers();
     }
 
     private void setUpInvoiceDaoMock() {
+
         invoiceDao = mock(InvoiceDaoJdbcTemplateImpl.class);
         Invoice invoice1 = new Invoice();
         invoice1.setId(1);
@@ -200,6 +220,5 @@ public class ServiceLayerTest {
         doReturn(item).when(itemDao).addItem(item2);
         doReturn(item).when(itemDao).getItem(1);
         doReturn(iList).when(itemDao).getAllItems();
-        //doReturn(iList).when(itemDao).getItemsByCustomer(1);
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -145,5 +146,64 @@ public class InvoiceItemDaoJdbcTemplateImplTest {
         InvoiceItem invoiceItem2 = invoiceItemDao.getInvoiceItem(invoiceItem.getId());
 
         assertEquals(invoiceItem2, invoiceItem);
+    }
+
+    @Test
+    public void getInvoiceItemsByInvoice(){
+
+        Customer customer1 = new Customer();
+        customer1.setFirstName("John");
+        customer1.setLastName("Doe");
+        customer1.setEmail("jdoe@email.com");
+        customer1.setCompany("Some Company");
+        customer1.setPhone("973-555-1234");
+        customer1 = customerDao.addCustomer(customer1);
+
+        Customer customer2 = new Customer();
+        customer2.setFirstName("Jane");
+        customer2.setLastName("Smith");
+        customer2.setEmail("jsmith@email.com");
+        customer2.setCompany("Another Company");
+        customer2.setPhone("973-555-1111");
+
+        Invoice invoice = new Invoice();
+        invoice.setCustomerId(customer1.getId());
+        invoice.setOrderDate(LocalDate.of(2019,11,11));
+        invoice.setPickupDate(LocalDate.of(2019,12,12));
+        invoice.setReturnDate(LocalDate.of(2019,10,10));
+        invoice.setLateFee(new BigDecimal(3.33));
+        invoice = invoiceDao.addInvoice(invoice);
+
+        Invoice invoice1 = new Invoice();
+        invoice1.setCustomerId(customer2.getId());
+        invoice1.setOrderDate(LocalDate.of(2019,07,23));
+        invoice1.setPickupDate(LocalDate.of(2019,8,89));
+        invoice1.setReturnDate(LocalDate.of(2019,8,13));
+        invoice1.setLateFee(new BigDecimal(4.44));
+
+        InvoiceItem invoiceItem = new InvoiceItem();
+        invoiceItem.setInvoiceId(invoice.getId());
+        invoiceItem.setItemId(2);
+        invoiceItem.setQuantity(44);
+        invoiceItem.setUnityRate(new BigDecimal(11.22));
+        invoiceItem.setDiscount(new BigDecimal(3.50));
+        invoiceItem = invoiceItemDao.addInvoiceItem(invoiceItem);
+
+        InvoiceItem invoiceItem1 = new InvoiceItem();
+        invoiceItem1.setInvoiceId(invoice1.getId());
+        invoiceItem1.setItemId(3);
+        invoiceItem1.setQuantity(45);
+        invoiceItem1.setUnityRate(new BigDecimal(14.22));
+        invoiceItem1.setDiscount(new BigDecimal(9.50));
+        invoiceItem1 = invoiceItemDao.addInvoiceItem(invoiceItem1);
+
+        List<InvoiceItem> invoiceItemList=invoiceItemDao.getInvoiceItemsByInvoice(invoice.getId());
+        assertEquals(invoiceItemList.size(),1);
+
+        invoiceItemList = invoiceItemDao.getInvoiceItemsByInvoice(invoice1.getId());
+        assertEquals(invoiceItemList.size(),1);
+
+
+
     }
 }
