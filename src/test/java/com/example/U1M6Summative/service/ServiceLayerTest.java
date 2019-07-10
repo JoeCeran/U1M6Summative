@@ -2,6 +2,8 @@ package com.example.U1M6Summative.service;
 
 import com.example.U1M6Summative.dao.*;
 import com.example.U1M6Summative.model.Customer;
+import com.example.U1M6Summative.model.Invoice;
+import com.example.U1M6Summative.model.InvoiceItem;
 import com.example.U1M6Summative.model.Item;
 import com.example.U1M6Summative.service.ServiceLayer;
 import com.example.U1M6Summative.viewmodel.ItemViewModel;
@@ -35,6 +37,8 @@ public class ServiceLayerTest {
 
         service = new ServiceLayer(customerDao, invoiceDao, invoiceItemDao, itemDao);
     }
+
+
 
     //Item Tests
 
@@ -83,7 +87,7 @@ public class ServiceLayerTest {
 
     //Set Ups
     @Test
-    private void setUpCustomerDaoMock() {
+    public void setUpCustomerDaoMock() {
 
         customerDao = mock(CustomerDaoJdbcTemplateImpl.class);
         Customer customer = new Customer();
@@ -108,15 +112,35 @@ public class ServiceLayerTest {
         doReturn(customerList).when(customerDao).getAllCustomers();
     }
 
-    private void setUpInvoiceDaoMock() {
+    @Test
+    public void setUpInvoiceItemDaoMock() {
 
-    }
 
-    private void setUpInvoiceItemDaoMock() {
+            invoiceItemDao = mock(InvoiceItemDaoJdbcTemplateImpl.class);
+            InvoiceItem invoiceItem = new InvoiceItem();
+            invoiceItem.setInvoiceId(0);
+            invoiceItem.setItemId(invoiceItem.getItemId());
+            invoiceItem.setQuantity(1000);
+            invoiceItem.setUnityRate(new BigDecimal(10.00));
 
-    }
+            InvoiceItem invoiceItem2 = new InvoiceItem();
+            invoiceItem2.setInvoiceId(0);
+            invoiceItem2.setItemId(invoiceItem.getItemId());
+            invoiceItem2.setQuantity(1000);
+            invoiceItem2.setUnityRate(new BigDecimal(10.00));
+            invoiceItem2.setDiscount(new BigDecimal(10.00));
 
-    private void setUpItemDaoMock() {
+
+            List<InvoiceItem> invoiceItemList = new ArrayList<>();
+            invoiceItemList.add(invoiceItem);
+
+            doReturn(invoiceItem).when(invoiceItemDao).addInvoiceItem(invoiceItem);
+            doReturn(invoiceItem).when(invoiceItemDao).addInvoiceItem(invoiceItem2);
+            doReturn(invoiceItem).when(invoiceItemDao).getAllInvoiceItem();
+        }
+
+    @Test
+    public void setUpItemDaoMock() {
         itemDao = mock(ItemDaoJdbcTemplateImpl.class);
         Item item = new Item();
         item.setName("book");

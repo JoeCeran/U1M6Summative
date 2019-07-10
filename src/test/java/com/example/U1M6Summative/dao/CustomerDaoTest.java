@@ -61,6 +61,7 @@ public class CustomerDaoTest {
         // Create a customer first
 
         Customer customer = new Customer();
+        //customer.setId(customer.getId());
         customer.setFirstName("John");
         customer.setLastName("Doe");
         customer.setEmail("jdoe@email.com");
@@ -69,10 +70,9 @@ public class CustomerDaoTest {
 
         customer = customerDao.addCustomer(customer);
 
-
         Customer customer2 = customerDao.getCustomer(customer.getId());
 
-        assertEquals(customer2, customer);
+        assertEquals(customer2.toString(), customer.toString());
 
         customerDao.deleteCustomer(customer.getId());
 
