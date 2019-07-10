@@ -129,8 +129,11 @@ public class CustomerDaoTest {
 
         customerDao.updateCustomer(customer);
 
-        Customer customer2 =  customerDao.getCustomer(customer.getId());
 
-        assertEquals(customer2, customer);
+        customer = customerDao.getCustomer(customer.getId());
+
+        Customer customer1 = customerDao.getCustomer(customer.getId());
+        assertEquals(customer1, customer);
+
     }
 }

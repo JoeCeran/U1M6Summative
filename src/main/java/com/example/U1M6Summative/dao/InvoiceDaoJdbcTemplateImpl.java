@@ -72,10 +72,16 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
                 invoice.getLateFee(),
                 invoice.getId());
     }
+
+
+
+
     @Override
     public void deleteInvoice(int id) {
         jdbcTemplate.update(DELETE_INVOICE_SQL, id);
     }
+
+
     private Invoice mapRowToInvoice(ResultSet rs, int rowNum) throws SQLException {
         Invoice invoice = new Invoice();
         invoice.setId(rs.getInt("invoice_id"));

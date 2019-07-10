@@ -1,3 +1,4 @@
+
 package com.example.U1M6Summative.viewmodel;
 
 
@@ -102,4 +103,6 @@ public class InvoiceViewModel {
         return Objects.hash(getId(), getCustomerId(), getOrderDate(), getPickupDate(), getReturnDate(), getLateFee(), getInvoiceItems());
     }
 
+
 }
+

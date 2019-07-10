@@ -31,6 +31,9 @@ public class InvoiceItemDaoJdbcTemplateImpl implements InvoiceItemDao{
         private static final String UPDATE_INVOICE_ITEM_SQL =
                 "update invoice_item set invoice_id = ?, item_id = ?, quantity = ?, unity_rate = ?, discount = ?, where id = ?";
 
+        private static final String SELECT_INVOICE_ITEMS_BY_INVOICE =
+                "select * invoice_item where invoice_id = ?";
+
         private JdbcTemplate jdbcTemplate;
 
         @Autowired
@@ -42,7 +45,7 @@ public class InvoiceItemDaoJdbcTemplateImpl implements InvoiceItemDao{
         @Override
         public InvoiceItem getInvoiceItem(int id) {
             try {
-                return jdbcTemplate.queryForObject(SELECT_INVOICE_ITEM_SQL, this::mapRowToAuthor, id);
+                return jdbcTemplate.queryForObject(SELECT_INVOICE_ITEM_SQL, this::mapRowToInvoiceItem, id);
             } catch (EmptyResultDataAccessException e) {
                 // if nothing is returned just catch the exception and return null
                 return null;
@@ -51,7 +54,7 @@ public class InvoiceItemDaoJdbcTemplateImpl implements InvoiceItemDao{
 
         @Override
         public List<InvoiceItem> getAllInvoiceItem() {
-            return jdbcTemplate.query(SELECT_ALL_INVOICE_ITEM_SQL, this::mapRowToAuthor);
+            return jdbcTemplate.query(SELECT_ALL_INVOICE_ITEM_SQL, this::mapRowToInvoiceItem);
         }
 
         @Override
@@ -88,8 +91,14 @@ public class InvoiceItemDaoJdbcTemplateImpl implements InvoiceItemDao{
             jdbcTemplate.update(DELETE_INVOICE_ITEM_SQL, id);
         }
 
+        public List<InvoiceItem> getInvoiceItemsByInvoice(int invoiceId){
+        return jdbcTemplate.query(SELECT_INVOICE_ITEMS_BY_INVOICE, this::mapRowToInvoiceItem, invoiceId
+
+        );
+    }
+
         // Helper methods
-        private InvoiceItem mapRowToAuthor(ResultSet rs, int rowNum) throws SQLException {
+        private InvoiceItem mapRowToInvoiceItem(ResultSet rs, int rowNum) throws SQLException {
             InvoiceItem invoiceItem = new InvoiceItem();
             invoiceItem.setInvoiceId(rs.getInt("invoice_id"));
             invoiceItem.setItemId(rs.getInt("item_id"));
