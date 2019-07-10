@@ -5,6 +5,7 @@ import com.example.U1M6Summative.dao.InvoiceDao;
 import com.example.U1M6Summative.dao.InvoiceItemDao;
 import com.example.U1M6Summative.dao.ItemDao;
 import com.example.U1M6Summative.model.Customer;
+import com.example.U1M6Summative.model.Invoice;
 import com.example.U1M6Summative.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -80,5 +81,24 @@ public class U1M6SummativeController {
     @RequestMapping(value = "/items", method = RequestMethod.GET)
     public List<Item> getAllItemss() {
         return itemDao.getAllItems();
+    }
+
+    //Invoice
+    @RequestMapping(value = "/invoice", method = RequestMethod.POST)
+    public Invoice addInvoice(@RequestBody Invoice invoice) {
+        invoiceDao.addInvoice(invoice);
+        return invoice;
+    }
+
+    @RequestMapping(value = "/invoice/{id}", method = RequestMethod.DELETE)
+    public void deleteInvoice(@PathVariable(name = "id") int id) {
+        invoiceDao.deleteInvoice(id);
+    }
+
+    @RequestMapping(value="/invoice/{customerId}", method = RequestMethod.GET)
+    public List<Invoice> getInvoiceByCustomer(@PathVariable(name="customerId") int customerId) {
+
+        List<Invoice> invoice = invoiceDao.getInvoicesByCustomer(customerId);
+        return invoice;
     }
 }

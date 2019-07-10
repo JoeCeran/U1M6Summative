@@ -6,16 +6,16 @@ import com.example.U1M6Summative.model.Invoice;
 import com.example.U1M6Summative.model.InvoiceItem;
 import com.example.U1M6Summative.model.Item;
 import com.example.U1M6Summative.service.ServiceLayer;
+import com.example.U1M6Summative.viewmodel.InvoiceViewModel;
 import com.example.U1M6Summative.viewmodel.ItemViewModel;
+import org.apache.tomcat.jni.Local;
 import org.junit.Before;
 import org.junit.Test;
-
+import java.awt.dnd.InvalidDnDOperationException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -39,6 +39,65 @@ public class ServiceLayerTest {
     }
 
 
+    //Invoice Tests
+
+    @Test
+    public void saveInvoice() {
+
+        InvoiceViewModel invoicevm = new InvoiceViewModel();
+
+        invoicevm.setOrderDate(LocalDate.of(2019, 07, 10));
+        invoicevm.setPickupDate(LocalDate.of(2019, 07,10));
+        invoicevm.setReturnDate(LocalDate.of(2019, 07,15));
+        invoicevm.setLateFee(new BigDecimal("5.25"));
+
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
+        customer.setEmail("jdoe@email.com");
+        customer.setCompany("Some Company");
+        customer.setPhone("973-555-1234");
+        customer = service.saveCustomer(customer);
+
+        invoicevm.setCustomer(customer);
+
+        InvoiceItem invoiceItem = new InvoiceItem();
+        invoiceItem.setQuantity(2);
+        invoiceItem.setUnityRate(new BigDecimal("1.25"));
+        invoiceItem.setDiscount(new BigDecimal("1.00"));
+        List<InvoiceItem> invoiceItemList = new ArrayList<>();
+        invoiceItemList.add(invoiceItem);
+
+        invoicevm.setInvoiceItems(invoiceItemList);
+
+        invoicevm = service.saveInvoice(invoicevm);
+
+        InvoiceViewModel fromService = service.findInvoice(invoicevm.getId());
+
+        assertEquals(invoicevm, fromService);
+    }
+
+    @Test
+    public void findInvoice() {
+        List<InvoiceViewModel> invoiceList = service.findAllInvoices();
+        InvoiceViewModel invoicevm1 = invoiceList.get(0);
+        InvoiceViewModel invoicevm2 = service.findInvoice(1);
+        assertEquals(invoicevm1, invoicevm2);
+    }
+
+    @Test
+    public void findAllInvoices() {
+        List<InvoiceViewModel> invoiceList = service.findAllInvoices();
+        assertEquals(invoiceList.size(), 1);
+    }
+
+    @Test
+    public void updateInvoice() {
+    }
+
+    @Test
+    public void removeInvoice() {
+    }
 
     //Item Tests
 
@@ -113,9 +172,35 @@ public class ServiceLayerTest {
     }
 
     @Test
+    public void setUpInvoiceDaoMock() {
+
+
+        invoiceDao = mock(InvoiceDaoJdbcTemplateImpl.class);
+        Invoice invoice1 = new Invoice();
+        invoice1.setId(1);
+        invoice1.setCustomerId(25);
+        invoice1.setOrderDate(LocalDate.of(2019, 05, 25));
+        invoice1.setPickupDate(LocalDate.of(2019, 05, 26));
+        invoice1.setReturnDate(LocalDate.of(2019, 05,27));
+        invoice1.setLateFee(new BigDecimal("10.00"));
+
+        Invoice invoice2 = new Invoice();
+        invoice2.setCustomerId(25);
+        invoice2.setOrderDate(LocalDate.of(2019, 07, 02));
+        invoice2.setPickupDate(LocalDate.of(2019, 07, 03));
+        invoice2.setReturnDate(LocalDate.of(2019, 07,07));
+        invoice2.setLateFee(new BigDecimal("5.00"));
+
+        List<Invoice> invoiceList = new ArrayList<>();
+        invoiceList.add(invoice1);
+
+        doReturn(invoice1).when(invoiceDao).addInvoice(invoice2);
+        doReturn(invoice1).when(invoiceDao).getInvoice(1);
+        doReturn(invoiceList).when(invoiceDao).getAllInvoices();
+    }
+
+    @Test
     public void setUpInvoiceItemDaoMock() {
-
-
             invoiceItemDao = mock(InvoiceItemDaoJdbcTemplateImpl.class);
             InvoiceItem invoiceItem = new InvoiceItem();
             invoiceItem.setInvoiceId(0);
