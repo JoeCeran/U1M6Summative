@@ -1,17 +1,22 @@
 package com.example.U1M6Summative.service;
-
 import com.example.U1M6Summative.dao.CustomerDao;
 import com.example.U1M6Summative.dao.InvoiceDao;
 import com.example.U1M6Summative.dao.InvoiceItemDao;
 import com.example.U1M6Summative.dao.ItemDao;
+<<<<<<< HEAD
 
 import com.example.U1M6Summative.model.Invoice;
 import com.example.U1M6Summative.model.InvoiceItem;
 
 import com.example.U1M6Summative.model.Item;
+=======
+import com.example.U1M6Summative.model.Customer;
+import com.example.U1M6Summative.model.Item;
+import com.example.U1M6Summative.model.Invoice;
+import com.example.U1M6Summative.model.InvoiceItem;
+>>>>>>> 9de8ef3d8a003b162d3408c477eb3277874a0bb3
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -32,43 +37,25 @@ public class ServiceLayer {
         this.itemDao = itemDao;
     }
 
-    //Customer API
 
-    //
-    // Invoice API
-    //
+    //customer api
 
-    public Invoice saveInvoice(Invoice invoice) {
-
-        return invoiceDao.addInvoice(invoice);
+    public Customer saveCustomer (Customer customer) {
+        return customerDao.addCustomer(customer);
     }
-
-    public Invoice findInvoice(int id) {
-
-        return invoiceDao.getInvoice(id);
+    public Customer findCustomer (int id) {
+        return customerDao.getCustomer(id);
     }
-
-    public List<Invoice> findAllInvoices() {
-
-        return invoiceDao.getAllInvoices();
+    public List<Customer> finaAlldCustomers() {
+        return customerDao.getAllCustomers();
     }
-
-    public void updateInvoice(Invoice invoice) {
-
-        invoiceDao.updateInvoice(invoice);
+    public void updateCustomer (Customer customer) {
+        customerDao.updateCustomer(customer);
     }
-
-    public void removeInvoice(int id) {
-
-        // Remove all associated invoice items first
-        List<InvoiceItem> invoiceItemList = invoiceDao.getInvoiceItemsByInvoice(id);
-
-        invoiceItemList.stream()
-                .forEach(invoiceItem -> invoiceItemDao.deleteInvoiceItem(invoiceItem.getId()));
-
-        // Remove invoice
-        invoiceDao.deleteInvoice(id);
+    public void removeCustomer (int id) {
+        customerDao.deleteCustomer(id);
     }
+    //Invoice API
 
     //Item API
     public Item saveItem(Item item) {
@@ -94,6 +81,40 @@ public class ServiceLayer {
     public void removeItem(int id) {
 
         itemDao.deleteItem(id);
+    }
+
+    // Invoice API
+
+    public Invoice saveInvoice(Invoice invoice) {
+
+        return invoiceDao.addInvoice(invoice);
+        }
+
+    public Invoice findInvoice(int id) {
+
+        return invoiceDao.getInvoice(id);
+        }
+
+    public List<Invoice> findAllInvoices() {
+
+        return invoiceDao.getAllInvoices();
+        }
+
+    public void updateInvoice(Invoice invoice) {
+
+        invoiceDao.updateInvoice(invoice);
+        }
+
+    public void removeInvoice(int id) {
+
+        // Remove all associated invoice items first
+        List<InvoiceItem> invoiceItemList = invoiceDao.getInvoiceItemByInvoice(id);
+
+        invoiceItemList.stream()
+        .forEach(invoiceItem -> invoiceItemDao.deleteInvoiceItemByInvoice(invoiceItem.getId()));
+
+        // Remove invoice
+        invoiceDao.deleteInvoice(id);
     }
 }
 

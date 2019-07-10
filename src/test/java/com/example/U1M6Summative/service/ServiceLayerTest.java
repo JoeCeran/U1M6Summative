@@ -1,6 +1,7 @@
 package com.example.U1M6Summative.service;
 
 import com.example.U1M6Summative.dao.*;
+import com.example.U1M6Summative.model.Customer;
 import com.example.U1M6Summative.model.Item;
 import com.example.U1M6Summative.service.ServiceLayer;
 import com.example.U1M6Summative.viewmodel.ItemViewModel;
@@ -81,9 +82,30 @@ public class ServiceLayerTest {
     }
 
     //Set Ups
-
+    @Test
     private void setUpCustomerDaoMock() {
 
+        customerDao = mock(CustomerDaoJdbcTemplateImpl.class);
+        Customer customer = new Customer();
+        customer.setId(customer.getId());
+        customer.setFirstName("Robert");
+        customer.setLastName("Iger");
+        customer.setCompany("Disney");
+        customer.setPhone("2125551212");
+
+        Customer customer1 = new Customer();
+        customer.setId(customer.getId());
+        customer.setFirstName("Robert");
+        customer.setLastName("Iger");
+        customer.setCompany("Disney");
+        customer.setPhone("2125551212");
+
+        List<Customer> customerList = new ArrayList<>();
+        customerList.add(customer);
+
+        doReturn(customer).when(customerDao).addCustomer(customer);
+        doReturn(customer).when(customerDao).addCustomer(customer1);
+        doReturn(customerList).when(customerDao).getAllCustomers();
     }
 
     private void setUpInvoiceDaoMock() {

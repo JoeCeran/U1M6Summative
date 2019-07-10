@@ -129,6 +129,7 @@ public class CustomerDaoTest {
 
         customerDao.updateCustomer(customer);
 
+
         customer = customerDao.getCustomer(customer.getId());
 
         Customer customer1 = customerDao.getCustomer(customer.getId());
